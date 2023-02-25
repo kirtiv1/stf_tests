@@ -35,4 +35,9 @@ stf --docker-image streamsets/testframework:3.x test -vs \
  test_simple_entities.py
  ```
 
+On success, the output will end similar to the following line
+```
+=================== 2 passed in 74.26s (0:01:14) ===================
+```
+
 

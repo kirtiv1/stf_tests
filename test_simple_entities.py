@@ -7,9 +7,11 @@ logger = logging.getLogger('streamsets.stf_tests')
 @pytest.fixture
 def simple_pipeline(sch, sch_authoring_sdc):
     """A trivial pipeline for use in job tests:
-
     dev_data_generator >> trash
     """
+    logger.info('*************** sch_authoring_sdc')
+    logger.info(sch_authoring_sdc is None)
+    logger.info(type(sch_authoring_sdc))
     pipeline_builder = sch.get_pipeline_builder(sch_authoring_sdc)
 
     dev_data_generator = pipeline_builder.add_stage('Dev Data Generator')
@@ -23,7 +25,6 @@ def simple_pipeline(sch, sch_authoring_sdc):
 
 def test_simple_job_lifecycle_with_fixture(sch, simple_pipeline):
     """Create a job using simple_pipeline fixture
-
     dev_data_generator >> trash
     """
     # Build and add a job
@@ -45,7 +46,6 @@ def test_simple_job_lifecycle_with_fixture(sch, simple_pipeline):
 
 def test_simple_job_lifecycle(sch, sch_authoring_sdc):
     """Create a job with a pipeline like following
-
     dev_data_generator >> trash
     """
     # Build and publish a pipeline

@@ -3,19 +3,24 @@ This repository contains code that shows how to run STF tests against StreamSets
 ### Pre-requisites
 * [Python 3.4+](https://docs.python.org/3/using/index.html) and pip3 installed
 * StreamSets Test Framework [installed](https://streamsets.com/documentation/stf/latest/installation.html) 
-* [Access to StreamSets Control Hub](https://streamsets.com/documentation/controlhub/latest/help/controlhub/UserGuide/OrganizationSecurity/OrgSecurity_Overview.html#concept_q5z_jkl_wy) with an user account in your  organization 
-* At least one [StreamSets Data Collector](https://streamsets.com/products/dataops-platform/data-collector/) instance registered with the above StreamSets Control Hub instance
-and has a label = 'stf-3'
+* [Access to StreamSets DataOps_Platform](https://docs.streamsets.com/portal/platform-controlhub/controlhub/UserGuide/GettingStarted/GettingStarted_title.html) with an user account in your  organization 
+* At least one [StreamSets Data Collector](https://streamsets.com/products/dataops-platform/data-collector/) instance registered with the above StreamSets DataOps Platform instance
+and has a label = e.g. 'sdc-5.2.0'
+
+0. Create API Credntials.
+Go to StreamSets DataOps instance, from left click on Manage → Api Credentials 
+ Make sure to store them. Note the env. variables here CRED_ID and CRED_TOKEN.
+
 
 1. Set up the following environment variables:
 
-SCH_PASSWORD,
+CRED_ID - This is found from the above step of creating API credentials. 
 
-SCH_USERNAME,
+CRED_TOKEN  - This is found from the above step of creating API credentials.
 
-SCH_URL,
+SDC_ID - This corresponds to the above StreamSets Data Collector. It can be founf d eom the UI once you c lick on `Set Up` --> `Engines` and then on that particular SDC.
 
-SCH_SDC_URL - This corresponds to the above StreamSets Data Collector.
+SDC_LABEL - This is found from the above SDC.
 
 2. Clone this branch of repo. Say the path on the system, after the cloning is $PATH/stf_tests
 
@@ -27,17 +32,17 @@ SCH_SDC_URL - This corresponds to the above StreamSets Data Collector.
 2. Run the following command
 
 ```
-stf --docker-image streamsets/testframework:3.x test -vs \
- --sch-server-url "${SCH_URL}" \
- --sch-username "${SCH_USERNAME}" \
- --sch-password "${SCH_PASSWORD}" \
- --sch-authoring-sdc "${SCH_SDC_URL}" \
- test_simple_entities.py
+stf test -vs \
+--sch-credential-id ${CRED_ID} \
+--sch-token "${CRED_TOKEN}" \
+--sch-authoring-sdc "${SDC_ID}" \
+--sch-executor-sdc-label "${SDC_LABEL}" \
+test_simple_entities.py
  ```
 
 On success, the output will end similar to the following line
 ```
-=================== 2 passed in 74.26s (0:01:14) ===================
+=================== 1 passed in 74.26s (0:01:14) ===================
 ```
 
 

@@ -1,4 +1,4 @@
-This repository contains code that shows how to run STF tests against StreamSets Control Hub 3.x
+This repository contains STF tests to run against StreamSets DataOps Platform.
 
 ### Pre-requisites
 * [Python 3.4+](https://docs.python.org/3/using/index.html) and pip3 installed
@@ -7,22 +7,25 @@ This repository contains code that shows how to run STF tests against StreamSets
 * At least one [StreamSets Data Collector](https://streamsets.com/products/dataops-platform/data-collector/) instance registered with the above StreamSets DataOps Platform instance
 and has a label = e.g. 'sdc-5.2.0'
 
-0. Create API Credntials.
-Go to StreamSets DataOps instance, from left click on Manage → Api Credentials 
+### Steps to take before executing a test
+1. Create API Credntials.
+Go to StreamSets DataOps instance, from left click on 'Manage' -→ 'Api Credentials'.
  Make sure to store them. Note the env. variables here CRED_ID and CRED_TOKEN.
 
 
-1. Set up the following environment variables:
+2. Set up the following environment variables:
 
-CRED_ID - This is found from the above step of creating API credentials. 
+CRED_ID - This is found from the above step of creating API credentials.
 
 CRED_TOKEN  - This is found from the above step of creating API credentials.
 
-SDC_ID - This corresponds to the above StreamSets Data Collector. It can be founf d eom the UI once you c lick on `Set Up` --> `Engines` and then on that particular SDC.
+SDC_ID - This corresponds to the above StreamSets Data Collector. It can be found from the UI once you click on `Set Up` --> `Engines` and then on that particular SDC.
 
 SDC_LABEL - This is found from the above SDC.
 
-2. Clone this branch of repo. Say the path on the system, after the cloning is $PATH/stf_tests
+3. Clone this branch of repo.
+
+Say the path on the system, after the cloning is $PATH/stf_tests
 
 ### Run tests
 1. Change to a directory where tests exist
